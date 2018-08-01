@@ -6,17 +6,17 @@ CACHE:
 
 #images
 chrome-extension://gfjopfpjmkcfgjpogepmdjmcnihfpokn/img/icons/icon-close_16.png
-http://localhost/projects/5.29.2018/images/AlicePoison.jpg
-http://localhost/projects/5.29.2018/images/GohanTribute.jpg
-http://localhost/projects/5.29.2018/images/enriqueBaliando.jpg
-http://localhost/projects/5.29.2018/images/maxresdefault.jpg
-http://localhost/projects/5.29.2018/images/nomoreYou.jpg
+http://localhost/projects/2018.5.29/images/AlicePoison.jpg
+http://localhost/projects/2018.5.29/images/GohanTribute.jpg
+http://localhost/projects/2018.5.29/images/enriqueBaliando.jpg
+http://localhost/projects/2018.5.29/images/maxresdefault.jpg
+http://localhost/projects/2018.5.29/images/nomoreYou.jpg
 
 #internal HTML documents
 
 
 #style sheets
-http://localhost/projects/5.29.2018/main.css
+http://localhost/projects/2018.5.29/main.css
 
 #style sheet images
 

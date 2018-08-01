@@ -35,7 +35,7 @@ Some concepts of php language from the new New Boston & W3Schools.
 	$y='Dude !!';
 	echo '$x lol <br />'.$y;
 	
-	echo " <br />Fuck bro $x lol <br />".$y.'<br />';
+	echo " <br />shit bro $x lol <br />".$y.'<br />';
 	
 	
 	/**/
@@ -165,20 +165,20 @@ echo $_SERVER['SCRIPT_NAME'];
 	$final=substr($suffled,0,20);
 	echo 'Random name generator >>  '.$final.'<br />';
 	$st1="Hello, there .Today is a great day.I'm hungry.";
-	$st2="Butt fuck it.";
+	$st2="Do it.";
 	similar_text($st1,$st2,$result);
 	echo 'The similarity = '.$result. '<br />';
 	
 	
 	/**/
-	$str='&nbsp fuck you&nbsp';
+	$str='&nbsp slap you&nbsp';
 	echo $str.'<br />';
 	$string= trim($str," ");
 	echo $string.'<br />';
 	
 	
 	/**/
-	$string='This is an <img src="ddd.jpg" alt="Fuck da bullshit." /> image';
+	$string='This is an <img src="ddd.jpg" alt="Cut the crap." /> image';
 	$string_slashes=htmlentities(addslashes($string));
 	echo $string.'<br />';
 	echo $string_slashes.'<br />';
