@@ -15,6 +15,5 @@
 		header("Location: http://$host$uri/$extra");
 		die();
 	}
-	
 ?>
 
