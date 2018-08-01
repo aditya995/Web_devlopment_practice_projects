@@ -35,8 +35,6 @@ Using header(); to redirect the pages.A simple login system with $_SESSION['']
 			echo '<p style="color:red;">Please fill all forms carefully. </p><br />';
 		}
 	}
-	
-	
 ?>
 <h3>Give your logging informations</h3>
 <strong>The users:</strong></br>
