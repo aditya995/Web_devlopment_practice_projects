@@ -46,7 +46,6 @@ Using header(); to redirect the pages.A simple login system with $_SESSION['']
 	}
 ?>
 </ul>
-
 <form action="index.php" method="POST">
 Your User name: <br /><br />
 	<input type="text" name="user" placeholder="Enter username"/><br />
