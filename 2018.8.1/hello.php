@@ -6,7 +6,6 @@
 		if($_SESSION['sex']=="male"){
 			$pronoun="His";
 		}else $pronoun="Her";
-		
 		echo "<h3>".$pronoun." password is ".$_SESSION['PASS']."</h3>";
 		echo'<a href="logout.php"><button>Logout !!</button></a>';
 	}else{
