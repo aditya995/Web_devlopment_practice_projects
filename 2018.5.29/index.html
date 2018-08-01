@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" manifest="manifest.appcache">
+	<head>
+		<meta charset="utf-8"/>
+		<title> Video element JavaScript API</title>
+		<link rel="stylesheet" href="main.css" />
+	</head>
+	<body onload="init();">
+		<h1>Creating a playlist using javascript.</h1>
+		<section>
+			<video id="myVideo" class="vid1" <!--controls--> >
+			<!--
+			<source src=https://mainline.i3s.unice.fr/mooc/samuraiPizzacat.webm type=video/webm>
+			<source src=https://mainline.i3s.unice.fr/mooc/samuraiPizzacat.ogg type=video/ogg>
+			<source src=https://mainline.i3s.unice.fr/mooc/samuraiPizzacat.mp4 type=video/mp4>
+			-->
+			</video>
+			<br />
+			<button onclick="play_pause_Video();" style="cursor : pointer;width:50px;"><span id="pp"></span></button>
+			<button onclick="playVideo();" style="cursor : pointer;">Play</button>
+			<button onclick="pauseVideo();" style="cursor : pointer;">Pause</button>
+			<button onclick="rewindVideo();" style="cursor : pointer;">|| Start</button>
+			<button onclick="voldn();" style="cursor : pointer;">Vol -</button><span id="data3"></span>
+			<button onclick="volup();" style="cursor : pointer;">vol +</button>
+			<button onclick="previousVideo();" style="cursor : pointer;"> << Previous </button>
+			<button onclick="nextVideo();" style="cursor : pointer;"> Next >> </button>
+			<p>Current Video ID is <span id="data"></span> .Now <span id="data1"></span><span id="data2"></span></p>
+		</section>
+		<section>
+			<h3>Playlist --></h3>
+			<img src="http://localhost/projects/5.29.2018/images/AlicePoison.jpg" onclick="pl1();" alt="AliceCooperPoison.jpg" style="cursor : pointer,width:150px;"/><span id="im1"></span><br />
+			<img src="http://localhost/projects/5.29.2018/images/maxresdefault.jpg" onclick="pl2();" alt="AkonJurney.jpg" style="cursor : pointer;"/><span id="im2"></span><br />
+			<img src="http://localhost/projects/5.29.2018/images/nomoreYou.jpg" onclick="pl3();" alt="AkonNoMoreYou.jpg" style="cursor : pointer;"/><span id="im3"></span><br />
+			<img src="http://localhost/projects/5.29.2018/images/enriqueBaliando.jpg" onclick="pl4();" alt="Baliando.jpg" style="cursor : pointer;"/><span id="im4"></span><br />
+			<img src="http://localhost/projects/5.29.2018/images/GohanTribute.jpg" onclick="pl5();" alt="GohanTribute.jpg" style="cursor : pointer;"/><span id="im5"></span><br />
+		</section>
+	</body>
+	<script>
+		var myVideo;
+		var a=0,b=0,p=0;
+		var v=0.1;var vol=0.1;
+		var currentVideo = 0;
+		var sources = [
+		"http://localhost/projects/5.29.2018/videos/Alice%20Cooper%20-%20Poison.mp4", 
+        "http://localhost/projects/5.29.2018/videos/1.mp4", 
+        "http://localhost/projects/5.29.2018/videos/Akon-No-more-you.mp4", 
+        "http://localhost/projects/5.29.2018/videos/Enrique-Iglesias-BailandoEspanol.mp4", 
+        "http://localhost/projects/5.29.2018/videos/GohanTribute-BringMeToLife.mp4"
+		];
+		vid1=document.querySelector(".vid1");
+		function play_pause_Video(){
+			if(p===0){
+				playVideo();p=1;
+			}else{
+				pauseVideo();p=0;
+			}
+		}
+		function playVideo(){
+			vid1.play();document.getElementById("data1").innerHTML = "playing.";b=2;
+			document.getElementById("pp").innerHTML="Pause";
+		}
+		function pauseVideo(){
+			vid1.pause();document.getElementById("data1").innerHTML = "paused.";b=1;
+			document.getElementById("pp").innerHTML="Play";
+		}
+		function rewindVideo(){
+			vid1.currentTime = 0;
+			if(b===1){
+				document.getElementById("data1").innerHTML = "loaded.";
+			}else if(b===2){
+				document.getElementById("data1").innerHTML = "playing.";
+			}
+			
+		}
+		function nextVideo(){
+			
+			if(a===0){
+				currentVideo--;
+			}a=1;//document.getElementById("").innerHTML = a;
+			if(currentVideo < (sources.length-1)){
+				currentVideo++;myVideo.src = sources[currentVideo]
+			myVideo.load();
+			myVideo.play();document.getElementById("data").innerHTML = 1+(currentVideo);
+			document.getElementById("data1").innerHTML = "playing.";
+			}
+		}
+		function previousVideo(){
+			if(a===0){
+				currentVideo--;
+			}a=1;
+			if(currentVideo> 0){
+				currentVideo--;
+				myVideo.src = sources[currentVideo]
+				myVideo.load();
+				myVideo.play();document.getElementById("data").innerHTML = 1+(currentVideo);
+				document.getElementById("data1").innerHTML = "playing.";
+			}
+		}
+		function volup(){
+			if(myVideo.volume < 1.0){
+				myVideo.volume+=0.1;v=myVideo.volume;vol=v.toFixed(2);document.getElementById("data3").innerHTML = vol;
+			}
+		}
+		function voldn(){
+			if(myVideo.volume > 0.0){
+				myVideo.volume-=0.1;v=myVideo.volume;vol=v.toFixed(2);document.getElementById("data3").innerHTML = vol;
+			}
+		}
+		function loadNextVideo(){
+			myVideo.src = sources[currentVideo]
+			myVideo.load();document.getElementById("data").innerHTML = 1+(currentVideo);	
+			currentVideo++;
+			
+		}
+		function loadAndplayNextVideo(){
+			console.log("playing " + sources[currentVideo])
+			if(currentVideo < (sources.length)){
+				loadNextVideo();
+				myVideo.play();document.getElementById("data1").innerHTML = "playing.";
+			}
+ 			
+		}
+		
+		function init(){
+			document.getElementById("data1").innerHTML = "loaded.";
+			document.getElementById("pp").innerHTML="Play";
+			myVideo = document.querySelector("#myVideo");
+			myVideo.volume= 0 ;v=myVideo.volume;vol=v.toFixed(2);document.getElementById("data3").innerHTML = vol;
+			myVideo.addEventListener("ended",loadAndplayNextVideo,false);
+			loadNextVideo();//document.getElementById("").innerHTML = a;
+		}
+		function pl1(){
+			currentVideo=0;
+			myVideo.src = sources[currentVideo]
+			myVideo.load();
+			myVideo.play();document.getElementById("data").innerHTML = 1+(currentVideo);
+			document.getElementById("data1").innerHTML = "playing.";
+		}function pl2(){
+			currentVideo=1;
+			myVideo.src = sources[currentVideo]
+			myVideo.load();
+			myVideo.play();document.getElementById("data").innerHTML = 1+(currentVideo);
+			document.getElementById("data1").innerHTML = "playing.";
+		}function pl3(){
+			currentVideo=2;
+			myVideo.src = sources[currentVideo]
+			myVideo.load();
+			myVideo.play();document.getElementById("data").innerHTML = 1+(currentVideo);
+			document.getElementById("data1").innerHTML = "playing.";
+		}function pl4(){
+			currentVideo=3;
+			myVideo.src = sources[currentVideo]
+			myVideo.load();
+			myVideo.play();document.getElementById("data").innerHTML = 1+(currentVideo);
+			document.getElementById("data1").innerHTML = "playing.";
+		}function pl5(){
+			currentVideo=4;
+			myVideo.src = sources[currentVideo]
+			myVideo.load();
+			myVideo.play();document.getElementById("data").innerHTML = 1+(currentVideo);
+			document.getElementById("data1").innerHTML = "playing.";
+		}
+	</script>
+</html>
+<!--
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+  <script>
+    
+    function init() {
+        var vid = document.getElementById('vid');
+        addListeners(vid);
+    }
+    
+    function toggleNotes() {
+    var notes = document.getElementsByClassName('note');
+    var isShowing =     parseInt(window.getComputedStyle(notes[0],null).getPropertyValue("opacity"));
+  
+    for (var i = 0; i < notes.length; i++) {
+        notes[i].style.opacity = isShowing ? 0 : 1;      
+    }
+    // toggle text to "Show Notes" or "Hide Notes"
+    document.getElementById('notes').className = isShowing ? 'off' : 'on';
+}
+ 
+function addListeners(vid) 
+{
+ 
+    /* add all event listeners for HTML5 media element events */  
+    vid.addEventListener('loadstart', function(evt) { logEvent(evt,'#000099'); }, false);  
+    vid.addEventListener('canplaythrough',function(evt) {  logEvent(evt,'#66CC33'); }, false);
+    vid.addEventListener('canplay', function(evt) { logEvent(evt,'#66CC33'); }, false);
+    vid.addEventListener('loadeddata', function(evt) { logEvent(evt,'#00CCCC'); }, false); 
+    vid.addEventListener('loadedmetadata', function(evt) { logEvent(evt,'#00CCCC'); }, false);
+          
+    vid.addEventListener('abort', function(evt) { logEvent(evt,'red'); }, false);
+    vid.addEventListener('emptied', function(evt) { logEvent(evt,'red'); }, false);
+    vid.addEventListener('error', function(evt) { logEvent(evt,'red'); }, false);
+    vid.addEventListener('stalled', function(evt) { logEvent(evt,'red'); }, false);
+    vid.addEventListener('suspend', function(evt) { logEvent(evt,'red'); }, false);
+    vid.addEventListener('waiting', function(evt) { logEvent(evt,'red'); }, false);
+ 
+    vid.addEventListener('pause', function(evt) { logEvent(evt,'orange'); }, false);
+    vid.addEventListener('play', function(evt) { logEvent(evt,'orange'); }, false);
+    vid.addEventListener('volumechange', function(evt) { logEvent(evt,'orange'); }, false);
+ 
+    vid.addEventListener('playing', function(evt) { logEvent(evt,'purple'); }, false);
+ 
+    vid.addEventListener('seeked', function(evt) { logEvent(evt,'teal'); }, false);    
+    vid.addEventListener('seeking', function(evt) { logEvent(evt,'teal'); }, false);    
+ 
+    vid.addEventListener('durationchange', function(evt) { logEvent(evt,'#cc0066'); }, false);
+    vid.addEventListener('progress', function(evt) { logEvent(evt,'#cc0066'); }, false);   
+    vid.addEventListener('ratechange', function(evt) { logEvent(evt,'#cc0066'); }, false);   
+ 
+    vid.addEventListener('timeupdate', function(evt) { logEvent(evt,'gray'); }, false);
+ 
+    vid.addEventListener('ended', function(evt) { logEvent(evt,'#000099'); }, false); 
+    
+    vid.addEventListener('webkitbeginfullscreen', function(evt) { logEvent(evt,'#FF6666'); }, false); 
+    vid.addEventListener('webkitendfullscreen', function(evt) { logEvent(evt,'#FF6666'); }, false); 
+}
+ 
+ 
+function logEvent(evt, color) 
+{
+    var log = document.createElement("div");
+    log.innerHTML = evt.type;
+    log.style.color = color;
+ 
+    var note = document.createElement("span");
+    note.setAttribute('class', 'note');
+    /* set the opacity of the note on the fly, based on whether notes are currently toggled on or off */
+    note.style.opacity = document.getElementById('notes').className == 'on' ? '1' : '0';
+ 
+    /* add a note describing what each event does */
+    switch (evt.type) {
+        case 'loadstart' :
+            note.innerHTML = "begin loading media data";
+            break;
+        case 'progress':
+            note.innerHTML = "fetching media...";
+            break;
+        case 'canplay':
+            note.innerHTML = "can play, but will eventually have to buffer";
+            break;
+        case 'canplaythrough':
+            note.innerHTML = "can play, won't have to buffer anymore";
+            break;
+        case 'loadeddata':
+            note.innerHTML = "can render media data at current playback position";
+            break;
+        case 'loadedmetadata':
+            note.innerHTML = "now we know duration, height, width, and more";
+            break;
+        case 'timeupdate':
+            log.innerHTML += " " + evt.target.currentTime.toFixed(3);
+            break;
+        case 'durationchange':
+            note.innerHTML = "new info about the duration";
+            break;
+        case 'volumechange':
+            note.innerHTML = "volume or muted property has changed";
+            break;
+        case 'play':
+            note.innerHTML = "just returned from the play function";
+            break;
+        case 'playing':
+            note.innerHTML = "playback has started";
+            break;
+        case 'pause':
+            note.innerHTML = "just returned from the pause function";
+            break;
+        case 'suspend':
+            note.innerHTML = "loading has stopped, but not all of the media has downloaded";
+            break;
+        case 'waiting':
+            note.innerHTML = "stopped playback because we're waiting for the next frame";
+            break;
+        case 'stalled':
+            note.innerHTML = "fetching media data, but none is arriving";
+            break;
+        case 'webkitbeginfullscreen':
+            note.innerHTML = "entering fullscreen mode";
+            break;
+        case 'webkitendfullscreen':
+            note.innerHTML = "exiting fullscreen mode";
+            break;
+        case 'error':  
+            var error = document.querySelector('video').error;
+            switch (error.code) {
+              case error.MEDIA_ERR_ABORTED:
+                note.innerHTML = "fetching aborted at the user's request"; 
+                break;
+              case error.MEDIA_ERR_NETWORK:
+                note.innerHTML = "a network error caused the browser to stop fetching the media"; 
+                break;
+              case error.MEDIA_ERR_DECODE:
+                note.innerHTML = "an error occurred while decoding the media"; 
+                break;
+              case error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+                note.innerHTML = "the media indicated by the src attribute was not suitable"; 
+                break;
+              default:
+                note.innerHTML = "an error occurred"; 
+                break;
+            }
+            break;
+    }
+ 
+    /* create the log message and append it to the events log */
+    log.appendChild(note);
+    var eventslog = document.getElementById('eventslog');
+    eventslog.insertBefore(log, eventslog.firstChild);
+}
+  </script>
+</head>
+<body onload='init();'>
+  <h1>Events for the &lt;video&gt; element</h1>
+  Example showing the differents events. Code borrowed and adapted from: <a href="http://developer.apple.com/library/safari/samplecode/HTML5VideoEventFlow/Listings/events_js.html">http://developer.apple.com/library/safari/samplecode/HTML5VideoEventFlow/Listings/events_js.html</a><p>
+  <p><b>If running in jsbin.com, you need to run it "externally", use the small arrow on top right.</b> <p>
+  
+<video id="vid" controls> 
+	
+	<source src=https://mainline.i3s.unice.fr/mooc/samuraiPizzacat.webm type=video/webm> 
+	<source src=https://mainline.i3s.unice.fr/mooc/samuraiPizzacat.ogg type=video/ogg> 
+	<source src=https://mainline.i3s.unice.fr/mooc/samuraiPizzacat.mp4 type=video/mp4> 
+</video> <p>
+  <div id="notes"></div><p>
+  <div id="eventslog"></div>
+</body>
+</html>

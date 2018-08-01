@@ -1,0 +1,27 @@
+CACHE MANIFEST
+
+#version 1.0 6-5-2018
+
+CACHE:
+
+#images
+chrome-extension://gfjopfpjmkcfgjpogepmdjmcnihfpokn/img/icons/icon-close_16.png
+http://localhost/projects/5.29.2018/images/AlicePoison.jpg
+http://localhost/projects/5.29.2018/images/GohanTribute.jpg
+http://localhost/projects/5.29.2018/images/enriqueBaliando.jpg
+http://localhost/projects/5.29.2018/images/maxresdefault.jpg
+http://localhost/projects/5.29.2018/images/nomoreYou.jpg
+
+#internal HTML documents
+
+
+#style sheets
+http://localhost/projects/5.29.2018/main.css
+
+#style sheet images
+
+
+#javascript files
+
+NETWORK:
+*
