@@ -16,15 +16,18 @@
 	
 	/* rand();*/
 	
-	$rand=rand();
+	$rand=rand(1,6);  // with parameters or without ,rand(); rand(1,6);
 	$max = getrandmax();
 	if(isset($_POST['click'])){
-		echo $rand.' / '.$max.'<br />';
+		echo 'You rolled a dice. It returned '.$rand.'<br />';
 	}
 	
 ?>
 <form action="concepts.php" method="POST">
 	<input type="submit" value="Rand ( ) ;" name="click"/>
 </form>
+<?php
+	
+?>
 
 
