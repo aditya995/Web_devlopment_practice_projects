@@ -8,6 +8,9 @@ Using header(); to redirect the pages.A simple login system with $_SESSION['']
 	$j=-1;
 	$password=array("123456","234567","345678","456789");
 	$sex=array("male","male","female","female");
+	$_SESSION['sendname']=$name;
+	$_SESSION['sendpass']=$password;
+	$_SESSION['sendgen']=$sex;
 	if(isset($_POST['user'])&& isset($_POST['pass'])){
 		$uname = $_POST['user'];
 		$passw = $_POST['pass'];
@@ -35,6 +38,8 @@ Using header(); to redirect the pages.A simple login system with $_SESSION['']
 			echo '<p style="color:red;">Please fill all forms carefully. </p><br />';
 		}
 	}
+	
+	
 ?>
 <h3>Give your logging informations</h3>
 <strong>The users:</strong></br>
@@ -46,6 +51,7 @@ Using header(); to redirect the pages.A simple login system with $_SESSION['']
 	}
 ?>
 </ul>
+
 <form action="index.php" method="POST">
 Your User name: <br /><br />
 	<input type="text" name="user" placeholder="Enter username"/><br />

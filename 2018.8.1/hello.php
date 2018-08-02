@@ -6,8 +6,14 @@
 		if($_SESSION['sex']=="male"){
 			$pronoun="His";
 		}else $pronoun="Her";
+		
 		echo "<h3>".$pronoun." password is ".$_SESSION['PASS']."</h3>";
-		echo'<a href="logout.php"><button>Logout !!</button></a>';
+		echo"<strong>The users:</strong></br>
+<h4>User name &nbsp &nbsp &nbsp &nbsp &nbsp Password &nbsp &nbsp &nbsp &nbsp &nbsp Sex</h4>";
+		foreach($_SESSION['sendname'] as $i=>$v){
+			echo"<li>$v &nbsp &nbsp &nbsp ".$_SESSION['sendpass'][$i]." &nbsp &nbsp &nbsp ".$_SESSION['sendgen'][$i]."</li>";
+		}
+		echo'<br /><a href="logout.php"><button>Logout !!</button></a>';
 	}else{
 		$host  = $_SERVER['HTTP_HOST'];
 		$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
@@ -15,5 +21,6 @@
 		header("Location: http://$host$uri/$extra");
 		die();
 	}
+	
 ?>
 
