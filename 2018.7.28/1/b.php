@@ -3,7 +3,7 @@
 include'header.php';
 
 if(isset($_POST['submit'])){
-	echo 'process 2';
+	echo 'process b.php';
 }
 
 ?>
