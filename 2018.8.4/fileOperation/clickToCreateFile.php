@@ -6,6 +6,7 @@
 	$info = file_get_contents('info.json'); // storing it as a json obj in php 
 	//print_r($info);
 	$dogs = file_get_contents('dogs.json');// storing it as a json obj in php
+	
 	//Decoding the json obj into php associative/indexed  (depending on the data)  array
 	//Getting a json data by >>  file_get_contents(file_name.json);
 	
