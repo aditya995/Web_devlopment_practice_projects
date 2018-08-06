@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2018 by AuroreDechamps (http://jsbin.com/karoboj/3/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Servlerless contact manager</title>
+<style id="jsbin-css">
+body {
+	position: relative;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 20px;
+	color: #333333;
+	width: 640px;
+	margin-bottom: 150px;
+}
+
+table {
+	border-spacing: 0;
+	width: 100%;
+	border: 1px solid #dddddd;
+	border-collapse: separate;
+	border-left: 0;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+tbody>tr:nth-child(odd)>td {
+	background-color: lightGrey;
+}
+
+tr {
+	border-collapse: separate;
+}
+
+th,td {
+	padding: 8px;
+	line-height: 20px;
+	text-align: left;
+	vertical-align: top;
+	border-left: 1px solid #dddddd;
+}
+
+td {
+	border-top: 1px solid #dddddd;
+}
+
+tbody:last-child tr:last-child>td:first-child {
+	-webkit-border-bottom-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+}
+
+tbody:last-child tr:last-child>td:last-child {
+	border-bottom-right-radius: 4px;
+}
+
+nav ul {
+	padding: 8px 15px;
+	margin: 0 0 20px;
+	list-style: none;
+	background-color: #f5f5f5;
+	border-radius: 4px;
+}
+
+nav li {
+	display: inline-block;
+	text-shadow: 0 1px 0 #ffffff;
+}
+
+nav li a {
+	text-decoration: none;
+}
+
+button {
+	padding: 4px 12px;
+	color: #333333;
+	background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff),
+		to(#e6e6e6));
+	background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+	background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+	border: 1px solid #cccccc;
+	border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	border-bottom-color: #b3b3b3;
+	border-radius: 4px;
+}
+
+button:active {
+	-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	color: #333333;
+	background-color: #e6e6e6;
+}
+
+button:hover, button:focus {
+	background-color: #e6e6e6;
+	color: #333333;	
+}
+
+section button {
+	position: absolute;
+	right: 0px;
+	margin-top: 20px;
+}
+
+footer button {
+	top: 15px;
+	position: absolute;
+	right: 10px;
+}
+
+aside {
+	position: absolute;
+	top: 40px;
+	left: 660px;
+	width: 300px;
+	min-height: 20px;
+	padding: 19px;
+	padding-top: 10px;
+	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+footer {
+	position: fixed;
+	bottom: 0px;
+	background-color: lightGrey;
+	height: 60px;
+	left: 0px;
+	text-align: center;
+	width: 100%;
+	line-height: 60px;
+	font-weight: bold;
+}
+
+
+input {
+	margin-bottom: 10px;
+}
+
+input[type=range] {
+	width: 225px;
+}
+input:invalid {
+  background-color:pink;
+}
+
+input:valid {
+  background-color:lightGreen;
+}
+label {
+	display: block;
+}
+
+
+label > span {
+	display: inline-block;
+	width: 250px;
+	line-height: 35px;
+	vertical-align: top;
+}
+
+input {
+	width: 250px;
+	height: 20px;
+	padding: 4px 6px;
+	font-size: 14px;
+	line-height: 20px;
+	vertical-align: middle;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+fieldset {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.trash-icon {
+	margin-top: 10px;
+}
+</style>
+</head>
+<body>
+  
+	<header>
+		<h1>Servlerless contact manager that uses localStorage and JSON</h1>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li>/</li>
+			<li>Contacts</li>
+		</ul>
+	</nav>
+  <section>
+    <article id="formContacts">
+      <header>
+        <h2>Add new contact</h2>
+      </header>
+      <details>
+        <summary>
+          Click to open the form
+        </summary>
+			<form onsubmit="return submitForm();">
+				<fieldset>
+					<legend>New contact</legend>
+					<label for="familyname">
+						<span>family name:</span>
+						<input type="text" name="familyName" id="familyName" maxlength="32" required>
+					</label>
+					<label for="givenName">
+						<span>Given name:</span>
+						<input type="text" name="givenName" id="givenName" maxlength="32" required >
+					</label>
+                  	<label for="tel">
+						<span>Phone:</span>
+
+                                      <input type="tel" name="tel" id="tel" required placeholder="123-456-7890" pattern="\d{3}[\-]\d{3}[\-]\d{4}">
+					</label>
+
+					<label for="email">
+						<span>Email:</span>
+						<input type="email" name = "email" id="email" maxlength="128">
+					</label>
+					<label for="birthDate">
+						<span>Birth date:</span>
+						<input name="birthDate" id="birthDate" type="date">
+					</label>
+					<label for="children">
+						<span>Number of children:</span>
+						0 <input type="range" name = "children" id="children" min="0" max="5" required> 5
+					</label>					
+				</fieldset>
+				<button id="addClient" type="submit">OK</button>
+			</form>	
+      </details>
+    </article>
+	<article id="contacts">
+		<header>
+			<h2>Contact list</h2>
+		</header>
+			<table>
+				<thead>
+					<tr>
+						<th>Given name</th>
+						<th>Family name</th>
+                        <th>Phone</th>
+						<th>Email</th>
+                      	<th>Birth date</th>
+						<th>Nb children</th>
+					</tr>
+				</thead>
+				<tbody id="tableContactBody">
+				</tbody>
+			</table>
+			<button id="createContact">New contact</button>
+	</article>
+    </section>
+
+	<aside id="journalActions">
+		<div>Recent actions</div>
+      <ul>
+        <li>Added Eddy Mitchell</li>
+      </ul>
+	</aside>
+	<footer>W3Cx HTML5 part 1 MOOC</footer>
+<script id="jsbin-javascript">
+// Different elements from the form in the HTML page
+var contactForm, lastNameField, firstNameField, telField, childrenField, emailField, birthDateField;
+
+// Array of contacts to save/load to/from localStorage
+var contacts = [];
+
+var textMessageInvalid = "This field contains invalid chjaracters";
+var dateMessageInvalid = "Bith date should be in the past";
+
+window.addEventListener("load", function() {
+  // called when the page has been entirely loaded
+  
+  // the form element
+  contactForm = document.forms[0]; 
+  
+  // get the fields elements
+  lastNameField = contactForm.familyName;
+  firstNameField = contactForm.givenName;
+  telField = contactForm.tel;
+  emailField = contactForm.email;
+  childrenField = contactForm.children;
+  birthDateField = contactForm.birthDate;
+  
+  // read contacts from localStorag
+  contacts = getContacts();
+  
+  // Builds and display the table of contacts
+  buildContactTable(contacts);
+  
+
+  // Listener for input events on the two text fields. Check for
+  // invalid charcters %, &, $, ! that are forbidden.
+  lastNameField.oninput = firstNameField.oninput = function() {
+	if (this.value.match(/[%&$!]/)) {
+		this.setCustomValidity(textMessageInvalid);
+	} else {
+		this.setCustomValidity("");
+	}
+};
+
+  // Listener for input events on the date field. Checks that the date is 
+  // in the past
+birthDateField.oninput = function() {
+	if (this.valueAsDate >= new Date()) {
+		this.setCustomValidity(dateMessageInvalid);
+	} else {
+		this.setCustomValidity("");
+	}
+}; 
+  
+});
+
+// Called when the form is submitted
+function submitForm() {
+  // When we execute this function, the form has already been validated
+  // by the HTML5 built-in validation system (bubbles etc.)
+  console.log("We are saving the current contact in the form");
+  
+  // Create a new contact JavaScript object with the current values
+  // in the form inoput fields
+ var contact = {};
+  contact.givenName = firstNameField.value;
+  contact.familyName = lastNameField.value;
+  contact.tel = telField.value;
+  contact.email = emailField.value;
+  contact.birthDate = birthDateField.value; 
+  contact.children = childrenField.value;
+  
+  // Add the contact in the array of contacts
+  contacts.push(contact);
+  
+  // Save the array of contacts in JSON format
+  localStorage.contacts = JSON.stringify(contacts); 
+  
+  // Update the HTML table with the new contact at the end
+  addLineToHTMLTable(contact);
+  
+  // do not submit the form using HTTP, return false prevents this
+  // submission
+  return false;
+} 
+  
+function buildContactTable(contacts) {
+	var rowIndex, row;
+		
+	// iterate on the contact array passed as parameter
+	for (rowIndex = 0; rowIndex < contacts.length; rowIndex++) {		
+		// Add a line in the HTML table for the current contact
+		addLineToHTMLTable(contacts[rowIndex]);
+	}
+}
+
+// Add a line to the HTML table, corresponding to the contact
+// passed as parameter
+function addLineToHTMLTable(contact) {
+  	var row, lastNameColumn, firstNameColumn, telColumn, bithDateColumn; 
+	var childrenColumn, emailColumn;
+  
+    var tableBody = document.getElementById("tableContactBody");
+	
+    // create a table row element and all tds inside for the diffent
+    // contact properties
+	row = document.createElement("tr");
+	firstNameColumn = document.createElement("td");
+	lastNameColumn = document.createElement("td");
+    telColumn = document.createElement("td");
+	bithDateColumn = document.createElement("td");
+	emailColumn = document.createElement("td");
+	childrenColumn = document.createElement("td");
+		
+	// fill the tds
+	lastNameColumn.innerHTML = contact.familyName;
+	firstNameColumn.innerHTML = contact.givenName;
+    telColumn.innerHTML = contact.tel;
+	bithDateColumn.innerHTML = contact.birthDate;
+	emailColumn.innerHTML = contact.email;
+	childrenColumn.innerHTML = contact.children;
+		
+				
+	// Adds tds to the row		
+	row.appendChild(lastNameColumn);
+	row.appendChild(firstNameColumn);
+    row.appendChild(telColumn);
+	row.appendChild(bithDateColumn);
+	row.appendChild(emailColumn);
+	row.appendChild(childrenColumn);
+  
+    // add row to the table body
+    tableBody.appendChild(row);
+}
+
+// Read contacts from localStorage
+function getContacts() {
+	var contacts = localStorage.contacts;
+	if (contacts) {
+		return JSON.parse(contacts);
+	} else {
+		return [];
+	}
+}
+
+
+</script>
+</body>
+</html>

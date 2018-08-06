@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=utf-8>
+  <title>HTML5 Demo: Online connectivity monitoring</title>
+</head>
+<body>
+   <header>
+     <h1>Online connectivity monitoring</h1>
+     <style>
+     #status {
+        color: #FFFFFF;
+        padding: 5px;
+     }
+     .online {
+         background: green;
+     }
+     .offline {
+         background: red;
+     }
+     </style>
+   </header>
+   <article>
+     <p>Current network status (try to disconnect wifi or unplug
+        your ethernet cable):
+        <span id="status">checking...</span>
+     </p>
+     <ol id="state"></ol>
+   </article>
+   <script>
+    var statusElem = document.getElementById('status'),
+    var state = document.getElementById('state');
+    function online(event) {
+     statusElem.className = navigator.onLine ? 'online' : 'offline';
+     statusElem.innerHTML = navigator.onLine ? 'online' : 'offline';
+     state.innerHTML += '<li>New event: ' + event.type + '</li>';
+    }
+    window.addEventListener('online', online);
+    window.addEventListener('offline', online);
+    // call the online function so that it refreshes display when
+    // the page is first loaded
+    online({ type: 'ready' });
+</script>
+</html>

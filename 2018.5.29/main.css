@@ -1,0 +1,22 @@
+
+.vid1{
+	height:300px;
+	width:auto;
+}
+#pp{
+	width:50px;
+	height:auto;
+}
+img{
+	width:17%;
+	height:auto;
+	margin:0.4%;
+}
+section{
+	padding:2% 2%;
+	margin-left:1%;
+	width:40%;
+	height:auto;
+	float:left;
+	border:1px solid black;
+}
