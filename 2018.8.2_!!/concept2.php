@@ -12,7 +12,7 @@ The call for header(); will show some error. But to solve this we can use >> ob_
 	$IP=$_SERVER['REMOTE_ADDR'];
 	echo $IP;
 	//ob_end_clean(); // To clean all page content when we are not redirecting.
-	//ob_end_flush(); // Not to clean the page informations when we are not redirecting
+	ob_end_flush(); // Not to clean the page informations when we are not redirecting
 	
 	/*IP address check*/
 	
