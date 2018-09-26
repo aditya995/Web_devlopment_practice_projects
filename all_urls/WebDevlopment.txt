@@ -1,0 +1,59 @@
+/*/*/*channels
+
+CS DOJO
+https://www.youtube.com/channel/UCxX9wt5FWQUAAz4UrysqK9A
+Traversy Media
+https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA
+****	SEO	****
+
+thenewboston
+https://www.youtube.com/watch?v=F2jfZ9AwwAQ&list=PL6gx4Cwl9DGBqMdJssJaiG3c9RooWQiU3
+
+****	HTML	****
+
+LearnCode.academy
+https://www.youtube.com/watch?v=3JluqTojuME&list=PLoYCgNOIyGAB_8_iq1cL8MVeun7cB6eNc
+****	CSS	****
+
+
+****	JAVASCRIPT	****
+
+
+****	PHP	****
+
+
+front to back Traversy Media
+https://www.youtube.com/watch?v=oJbfyzaA2QA&list=PLillGF-Rfqbap2IB6ZS4BBBcYPagAjpjn
+
+****	MySql	****
+
+
+thenewboston
+https://www.youtube.com/watch?v=KgiCxe-ZW8o&list=PL32BC9C878BA72085
+
+*PHP ** mysql * CRUD rest api
+https://www.youtube.com/watch?v=hZPA8HgINmM
+
+****	Ajax	****
+
+
+****	API	****
+
+
+**postman tutorials**API testing tool
+https://www.youtube.com/watch?v=iMfsG4c1A3U&list=PL6iUkDSEH9StfnjSTCsASTZbivezT18mW
+https://www.youtube.com/watch?v=Qlvbc6kIBOk&index=2&list=PL6iUkDSEH9SvsgM4zyFrTnaewN65NZHAG
+
+**facebook api using php
+https://www.youtube.com/watch?v=8383iyKYC1g
+https://www.youtube.com/watch?v=0sQVzfmYb8k
+
+***Understanding And Using REST APIs
+https://www.smashingmagazine.com/2018/01/understanding-using-rest-api/
+
+***php rest API
+https://www.youtube.com/watch?v=OEWXbpUMODk&list=PLillGF-RfqbZ3_Xr8do7Q2R752xYrDRAo
+
+***php rest api with mysql crud, ajax
+https://www.youtube.com/watch?v=hZPA8HgINmM&t=272s
+
