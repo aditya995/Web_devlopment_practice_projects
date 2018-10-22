@@ -56,4 +56,3 @@ https://www.youtube.com/watch?v=OEWXbpUMODk&list=PLillGF-RfqbZ3_Xr8do7Q2R752xYrD
 
 ***php rest api with mysql crud, ajax
 https://www.youtube.com/watch?v=hZPA8HgINmM&t=272s
-
